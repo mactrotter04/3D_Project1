@@ -1,17 +1,29 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class Scorer : MonoBehaviour
 {
     int hits = 0;
+    AudioSource audioSource;
+    ParticleSystem ps;
+
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        ps = GetComponent<ParticleSystem>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Win"))
         {
+            FindAnyObjectByType<AudioSource>().Play();
+            FindAnyObjectByType<ParticleSystem>().Play();
             Destroy(other.gameObject);
             Debug.Log("You win!");
-            Invoke(nameof(LoadNextScene), 1f);
+            Invoke(nameof(LoadNextScene), 4f);
         }
         else if (other.gameObject.CompareTag("obsticle"))
         {
