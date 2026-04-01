@@ -6,7 +6,6 @@ public class Mover : MonoBehaviour
 { 
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float runSpeedMultiplier = 2f;
-    [SerializeField] float rotationSpeed = 10f;
 
     Animator animator;
     PlayerInput playerInput;
