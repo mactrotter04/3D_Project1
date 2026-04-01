@@ -6,13 +6,13 @@ public class Scorer : MonoBehaviour
 {
     int hits = 0;
     AudioSource audioSource;
-    ParticleSystem ps;
+    ParticleSystem[] ps;
 
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        ps = GetComponent<ParticleSystem>();
+        ps = FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None);
     }
 
     void OnTriggerEnter(Collider other)
@@ -20,7 +20,10 @@ public class Scorer : MonoBehaviour
         if (other.gameObject.CompareTag("Win"))
         {
             FindAnyObjectByType<AudioSource>().Play();
-            FindAnyObjectByType<ParticleSystem>().Play();
+            foreach (ParticleSystem particleSystem in ps)
+            {
+                particleSystem.Play();
+            }
             Destroy(other.gameObject);
             Debug.Log("You win!");
             Invoke(nameof(LoadNextScene), 4f);
