@@ -6,11 +6,13 @@ TagManager:
   tags:
   - Hit
   - obsticle
+  - Win
+  - Death
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - obsicle
   - Water
   - UI
   - 
